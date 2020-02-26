@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
 import { Input, Button, Segment, Grid, Popup } from 'semantic-ui-react';
-import { saveJob } from './../services/fakeJobService';
+import { getJobs, getTime } from './../services/fakeJobService';
 
 class JobInput extends Component {
   state = {
-    data: {
+    job: {
       title: '',
       creationDate: '',
       tasks: []
-    }
+    },
+    data: getJobs()
   };
 
   handleChange = e => {
-    const data = { ...this.state.data };
-    data.title = e.currentTarget.value;
-    this.setState({ data });
+    const job = { ...this.state.job };
+    job.title = e.currentTarget.value;
+    job.creationDate = getTime();
+    this.setState({ job });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    saveJob(this.state.data);
-    console.log('submitted');
+    const job = { ...this.state.job };
+    const join = this.state.data.concat(job);
+    this.setState({ data: join });
   };
 
   render() {
@@ -47,7 +50,11 @@ class JobInput extends Component {
               <Grid>
                 <Grid.Row centered columns={5} style={{ marginTop: '20px' }}>
                   <Grid.Column fluid>
-                    <Button type="submit" size="massive">
+                    <Button
+                      onClick={this.handleSubmit}
+                      type="submit"
+                      size="massive"
+                    >
                       Add Job
                     </Button>
                   </Grid.Column>

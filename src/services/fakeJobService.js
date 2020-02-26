@@ -1,4 +1,4 @@
-const jobs = [
+export const jobs = [
   {
     _id: '111964',
     title: 'Build portfolio',
@@ -31,7 +31,7 @@ const jobs = [
   }
 ];
 
-function getTime() {
+export function getTime() {
   const currentDate = new Date();
   return (
     'Created: ' +

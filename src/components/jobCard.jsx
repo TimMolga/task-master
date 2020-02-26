@@ -20,7 +20,6 @@ class JobCard extends Component {
   handleJobDelete = job => {
     const jobs = this.state.data.filter(j => j._id !== job._id);
     this.setState({ data: jobs });
-    console.log(job);
   };
 
   render() {
@@ -47,7 +46,7 @@ class JobCard extends Component {
                       </p>
                     </div>
                   ))}
-                  <button className="ui mini primary button">Add Job</button>
+                  <button className="ui mini primary button">Add Task</button>
                   <button
                     className="ui mini right floated red button"
                     onClick={() => this.handleJobDelete(job)}
