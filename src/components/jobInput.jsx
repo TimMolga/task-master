@@ -54,6 +54,7 @@ class JobInput extends Component {
                       onClick={this.handleSubmit}
                       type="submit"
                       size="massive"
+                      fluid
                     >
                       Add Job
                     </Button>
