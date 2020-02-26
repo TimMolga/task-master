@@ -51,12 +51,15 @@ class JobInput extends Component {
                 <Grid.Row centered columns={5} style={{ marginTop: '20px' }}>
                   <Grid.Column fluid>
                     <Button
+                      animated="fade"
                       onClick={this.handleSubmit}
                       type="submit"
                       size="massive"
                       fluid
+                      color="green"
                     >
-                      Add Job
+                      <Button.Content visible>Add Job</Button.Content>
+                      <Button.Content hidden>Get Tasking!</Button.Content>
                     </Button>
                   </Grid.Column>
                 </Grid.Row>
