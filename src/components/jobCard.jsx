@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
-import { getJobs } from './../services/fakeJobService';
+import { getJobs } from './../services/jobService';
 
 class JobCard extends Component {
   state = {
-    data: getJobs()
+    data: []
   };
 
-  handleTaskDelete = task => {
-    const mappedData = this.state.data.map(correctTask => {
-      const filteredData = correctTask.tasks.filter(t => t._id !== task._id);
-      return {
-        ...correctTask,
-        tasks: filteredData
-      };
-    });
-    this.setState({ data: mappedData });
-  };
+  async componentDidMount() {
+    const { data } = await getJobs();
+    this.setState({ data });
+    console.log({ data });
+  }
 
-  handleJobDelete = job => {
-    const jobs = this.state.data.filter(j => j._id !== job._id);
-    this.setState({ data: jobs });
-  };
+  // handleTaskDelete = task => {
+  //   const mappedData = this.state.data.map(correctTask => {
+  //     const filteredData = correctTask.tasks.filter(t => t._id !== task._id);
+  //     return {
+  //       ...correctTask,
+  //       tasks: filteredData
+  //     };
+  //   });
+  //   this.setState({ data: mappedData });
+  // };
+
+  // handleJobDelete = job => {
+  //   const jobs = this.state.data.filter(j => j._id !== job._id);
+  //   this.setState({ data: jobs });
+  // };
 
   render() {
     return (
@@ -32,20 +38,6 @@ class JobCard extends Component {
                 <div className="header">{job.title}</div>
                 <div className="meta">{job.creationDate}</div>
                 <div className="description">
-                  {job.tasks.map(task => (
-                    <div className="ui big message" key={task._id}>
-                      <p>
-                        {task.name}
-                        <button
-                          onClick={() => this.handleTaskDelete(task)}
-                          className="ui right floated mini circular red basic icon button"
-                          style={{ cursor: 'pointer' }}
-                        >
-                          <i aria-hidden="true" className="close icon"></i>
-                        </button>
-                      </p>
-                    </div>
-                  ))}
                   <button className="ui mini primary button">Add Task</button>
                   <button
                     className="ui mini right floated red button"
@@ -53,6 +45,19 @@ class JobCard extends Component {
                   >
                     Remove Job
                   </button>
+                  {job.tasks.map(task => (
+                    <div className="ui big message" key={task._id}>
+                      <p>
+                        {task.name}
+                        <button
+                          onClick={() => this.handleTaskDelete(task)}
+                          className="ui right floated mini circular red basic icon button"
+                        >
+                          <i aria-hidden="true" className="close icon"></i>
+                        </button>
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
