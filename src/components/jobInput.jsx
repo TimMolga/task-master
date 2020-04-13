@@ -4,17 +4,18 @@ import { saveJob } from './../services/jobService';
 
 class JobInput extends Component {
   state = {
-    data: { title: '' }
+    data: { title: '' },
   };
 
-  handleChange = e => {
+  handleJobChange = (e) => {
     const data = { ...this.state.data };
     data.title = e.currentTarget.value;
     this.setState({ data });
   };
 
-  handleSubmit = async () => {
+  handleJobSubmit = async () => {
     await saveJob(this.state.data);
+    this.setState({ data: this.state.data });
   };
 
   render() {
@@ -31,19 +32,18 @@ class JobInput extends Component {
                     name="jobname"
                     size="massive"
                     fluid
-                    icon="plus"
                     placeholder="Add a new job..."
                     value={this.state.data.title}
-                    onChange={this.handleChange}
+                    onChange={this.handleJobChange}
                   />
                 }
               />
               <Grid>
                 <Grid.Row centered columns={5} style={{ marginTop: '20px' }}>
-                  <Grid.Column fluid>
+                  <Grid.Column>
                     <Button
                       animated="fade"
-                      onClick={this.handleSubmit}
+                      onClick={this.handleJobSubmit}
                       type="submit"
                       size="massive"
                       fluid

@@ -16,10 +16,9 @@ export function deleteJob(jobId) {
 }
 
 export function saveJob(job) {
-  if (job._id) {
-    const body = { ...job };
-    delete body._id;
-    return http.put(jobUrl(job), body);
-  }
   return http.post(apiEndpoint, job);
+}
+
+export function saveTask(taskId, task) {
+  return http.post(jobUrl(taskId), task);
 }
