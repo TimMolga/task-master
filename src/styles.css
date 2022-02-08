@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    --task-timer-primary-color: #6993d5;
+    --task-timer-secondary-color: black;
+    --task-timer-tertiary-color: white;
+    background-color: var(--task-timer-primary-color);
+    /* background-color: #f47827; */
+}

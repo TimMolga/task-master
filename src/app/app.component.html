@@ -1,14 +1,17 @@
 <div class="container">
-    <div class="card">
-        <h1>Javascript Stopwatch</h1>
+    <div class="container-form">
+        <input [(ngModel)]="inputWatchName" name="inputWatchName" type=" text " class="container-form-item container-input " placeholder="Enter a timer name [optional] ">
+        <button class="container-form-item container-btn " (click)=" createStopWatch() ">Add
+            Timer</button>
+    </div>
+    <div *ngFor="let watch of stopWatchList " class="card ">
+        <div class="card-btn-remove-container ">
 
-        <p id="stopwatch">00:00</p>
-
-        <button class="btn primary-btn" id="stopwatchToggleButton" onclick="ToggleStopwatch()">
-      Start
-    </button>
-        <button class="btn secondary-btn" id="stopwatchResetButton" onclick="ResetTimer()">
-      Reset
-    </button>
+            <button class="card-btn-remove " (click)="deleteStopWatch(watch.id) ">X</button>
+        </div>
+        <p>{{watch.watchName | wordCapitalizer}}</p>
+        <p class="time-value ">{{watch.timerValue | padTimer}}</p>
+        <button class="card-btn card-primary-btn " (click)="toggleStopWatch(watch.id) ">{{watch.toggleLabel}}</button>
+        <button class="card-btn card-secondary-btn " [class.card-btn-disabled]="watch.isActive " [disabled]="watch.isActive " (click)="resetStopWatch(watch.id) ">Reset</button>
     </div>
 </div>

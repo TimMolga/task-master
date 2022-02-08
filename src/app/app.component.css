@@ -1,58 +1,109 @@
-body {
-    background-color: #6993d5;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 .container {
     column-gap: 5em;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    width: 80%;
+    margin: auto;
+}
+
+.container-form {
+    margin-top: 2em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-form-item {
+    border: 2px solid var(--task-timer-tertiary-color);
+    border-radius: 30px;
+    font-size: 2em;
+    margin-top: 1em;
+    height: 1.5em;
+    width: 50%;
+}
+
+.container-btn {
+    color: var(--task-timer-tertiary-color);
+    background-color: var(--task-timer-primary-color);
+    cursor: pointer;
+}
+
+.container-input {
+    height: 1.5em;
+    background-color: var(--task-timer-tertiary-color);
+    text-align: center;
 }
 
 .card {
     align-items: center;
     display: flex;
     flex-direction: column;
-    padding-top: 10em;
     row-gap: 20px;
+    border: 2px solid var(--task-timer-tertiary-color);
+    border-radius: 2em;
+    padding: 1em;
+    margin-top: 6em;
 }
 
-p {
-    font-size: 60px;
-    font-weight: bold;
-}
-
-.btn {
-    background-color: #6993d5;
-    border: 2px solid white;
+.card-btn {
+    background-color: var(--task-timer-primary-color);
+    border: 2px solid var(--task-timer-tertiary-color);
     border-radius: 30px;
     font-size: 2em;
-    width: 10em;
+    width: 8em;
+    cursor: pointer;
 }
 
-.primary-btn {
-    background-color: #6993d5;
-    border-color: white;
-    color: white;
+.card-btn-remove-container {
+    width: 100%;
+    text-align: end;
 }
 
-.primary-btn:hover {
-    background-color: white;
-    border-color: #6993d5;
-    color: #6993d5;
+.card-btn-remove {
+    border: none;
+    font-size: 1em;
+    background-color: var(--task-timer-primary-color);
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--task-timer-tertiary-color);
 }
 
-.secondary-btn {
-    background-color: black;
-    border-color: white;
-    color: white;
+.card-primary-btn {
+    background-color: var(--task-timer-primary-color);
+    color: var(--task-timer-tertiary-color);
+    cursor: pointer;
 }
 
-.secondary-btn:hover {
-    background-color: white;
-    border-color: #6993d5;
-    color: black;
+.card-primary-btn:hover {
+    background-color: var(--task-timer-tertiary-color);
+    border-color: var(--task-timer-primary-color);
+    color: var(--task-timer-primary-color);
+}
+
+.card-secondary-btn {
+    background-color: var(--task-timer-secondary-color);
+    color: var(--task-timer-tertiary-color);
+}
+
+.card-secondary-btn:hover {
+    background-color: var(--task-timer-tertiary-color);
+    border-color: var(--task-timer-primary-color);
+    color: var(--task-timer-primary-color);
+}
+
+.card-btn-disabled,
+.card-btn-disabled:hover {
+    background-color: grey;
+    border-color: var(--task-timer-tertiary-color);
+    color: var(--task-timer-tertiary-color);
+    cursor: default;
+}
+
+.time-value {
+    font-size: 60px;
+    font-weight: bold;
 }
