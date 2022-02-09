@@ -6,6 +6,103 @@ body {
     --task-timer-primary-color: #6993d5;
     --task-timer-secondary-color: black;
     --task-timer-tertiary-color: white;
+    --task-timer-disabled-color: grey;
     background-color: var(--task-timer-primary-color);
     /* background-color: #f47827; */
+}
+
+.container {
+    column-gap: 5em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+}
+
+.container-form {
+    margin-top: 2em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-form-item {
+    border-radius: 30px;
+    font-size: 2em;
+    margin-top: 1em;
+    height: 1.5em;
+    width: 50%;
+}
+
+.container-btn {
+    cursor: pointer;
+}
+
+.container-input {
+    height: 1.5em;
+    text-align: center;
+}
+
+.card {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    border-radius: 2em;
+    padding: 1em;
+    margin-top: 6em;
+}
+
+.card-btn {
+    border-radius: 30px;
+    font-size: 2em;
+    width: 8em;
+    cursor: pointer;
+}
+
+.card-btn-remove-container {
+    width: 100%;
+    text-align: end;
+}
+
+.card-btn-remove {
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.card-primary-btn {
+    cursor: pointer;
+}
+
+.card-secondary-btn {
+    cursor: pointer;
+}
+
+.card-btn-disabled,
+.card-btn-disabled:hover {
+    cursor: default;
+}
+
+.card-input {
+    cursor: pointer;
+    text-align: center;
+    border-radius: 30px;
+}
+
+.card-title {
+    font-size: 1.5em;
+}
+
+.card-body {
+    font-size: 1em;
+}
+
+.card-input::placeholder {
+    opacity: 1;
 }

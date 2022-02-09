@@ -1,16 +1,14 @@
 <div class="container">
     <div class="container-form">
-        <input [(ngModel)]="inputWatchName" name="inputWatchName" type=" text " class="container-form-item container-input " placeholder="Enter a timer name [optional] ">
         <button class="container-form-item container-btn " (click)=" createStopWatch() ">Add
             Timer</button>
     </div>
     <div *ngFor="let watch of stopWatchList " class="card ">
         <div class="card-btn-remove-container ">
-
             <button class="card-btn-remove " (click)="deleteStopWatch(watch.id) ">X</button>
         </div>
-        <p>{{watch.watchName | wordCapitalizer}}</p>
-        <p class="time-value ">{{watch.timerValue | padTimer}}</p>
+        <input #watchName type=" text " class="card-input card-title" TitleCaseInput (keyup.enter)="blurOnEnter($event)" (blur)="updateStopWatchName(watch.id, watchName.value)" placeholder=" {{watch.stopWatchName}} ">
+        <p class="time-value ">{{watch.stopWatchValue | padTimer}}</p>
         <button class="card-btn card-primary-btn " (click)="toggleStopWatch(watch.id) ">{{watch.toggleLabel}}</button>
         <button class="card-btn card-secondary-btn " [class.card-btn-disabled]="watch.isActive " [disabled]="watch.isActive " (click)="resetStopWatch(watch.id) ">Reset</button>
     </div>

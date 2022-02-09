@@ -10,26 +10,34 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class AppComponent {
   title = 'task-master';
-  stopWatchList:IStopWatch[] = [new StopWatch(uuidv4(), "New Task Timer")];
-  inputWatchName:string = "";
+  stopWatchList:IStopWatch[] = [new StopWatch(uuidv4(), '[Task Timer #1]')];
+  stopWatchCount:number = 1;
 
-  createStopWatch(){
-    this.stopWatchList.push(new StopWatch(uuidv4(), this.inputWatchName));
-    this.inputWatchName = "";
+  createStopWatch():void{
+    this.stopWatchList.push(new StopWatch(uuidv4(), `[Task Timer #${++this.stopWatchCount}]`));
   }
 
-  deleteStopWatch(timerId?:string){
-    let newWatchList = this.stopWatchList.filter(x => x.id !== timerId);
+  blurOnEnter(event:any){
+    event.target.blur();
+  }
+
+  updateStopWatchName(watchId:string | undefined, watchName:string | undefined):void{
+    let stopWatch = this.stopWatchList.find(stopWatch => stopWatch.id === watchId);
+    if (stopWatch) stopWatch.stopWatchName = watchName;
+  }
+
+  deleteStopWatch(watchId:string | undefined):void{
+    let newWatchList = this.stopWatchList.filter(stopWatch => stopWatch.id !== watchId);
     this.stopWatchList = [...newWatchList];
   }
   
-  toggleStopWatch(timerId?:string){
-    let stopWatch = this.stopWatchList.find(x => x.id === timerId);
-    stopWatch?.toggleTimer();
+  toggleStopWatch(watchId:string | undefined):void{
+    let stopWatch = this.stopWatchList.find(stopWatch => stopWatch.id === watchId);
+    if (stopWatch) stopWatch.toggleTimer();
   }
 
-  resetStopWatch(timerId?:string){
-    let stopWatch = this.stopWatchList.find(x => x.id === timerId);
-    stopWatch?.resetTimer();
+  resetStopWatch(watchId:string | undefined):void{
+    let stopWatch = this.stopWatchList.find(stopWatch => stopWatch.id === watchId);
+    if (stopWatch) stopWatch.resetTimer();
   }
 }

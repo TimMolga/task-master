@@ -5,9 +5,9 @@ export class StopWatch implements IStopWatch {
     private _interval:any = null;
     private _toggleLabel:string = "Start";
     private _isActive:boolean = false;
-    private _timerValue:number = 0;
+    private _stopWatchValue:number = 0;
 
-    constructor(private _id:string, private _watchName:string = ""){}
+    constructor(private _id:string, private _stopWatchName:string){}
     
     toggleTimer(): void {
         this._isActive = !this._isActive;
@@ -18,7 +18,7 @@ export class StopWatch implements IStopWatch {
     private activateTimer(timerActive:boolean):void {
         if (timerActive) {
             this._interval = setInterval(() => {
-                this._timerValue++;
+                this._stopWatchValue++;
             }, 1000);
         } else {
             clearInterval(this._interval);
@@ -26,7 +26,7 @@ export class StopWatch implements IStopWatch {
     }
     
     resetTimer(): void {
-        this._timerValue = 0;
+        this._stopWatchValue = 0;
         this._interval = null;
     }
 
@@ -38,12 +38,12 @@ export class StopWatch implements IStopWatch {
         this._id = value;
     }
 
-    get watchName(){
-        return this._watchName;
+    get stopWatchName(){
+        return this._stopWatchName;
     }
 
-    set watchName(value){
-        this._watchName = value;
+    set stopWatchName(value){
+        this._stopWatchName = value;
     }
 
     get toggleLabel(){
@@ -54,7 +54,7 @@ export class StopWatch implements IStopWatch {
         return this._isActive;
     }
 
-    get timerValue(){
-        return this._timerValue;
+    get stopWatchValue(){
+        return this._stopWatchValue;
     }
 }
