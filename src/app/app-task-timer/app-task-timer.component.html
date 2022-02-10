@@ -1,0 +1,21 @@
+<container [theme]="'blue'">
+    <div class="container-heading">
+        <div class="container-heading-item">
+            <button class="btn btn-primary btn-large btn-blue" (click)=" createStopWatch() ">Add
+                Stopwatch</button>
+        </div>
+    </div>
+    <div class="container-body">
+        <card *ngFor="let watch of stopWatchList ">
+            <div class="card-heading">
+                <button class="btn btn-large btn-borderless btn-blue" (click)="deleteStopWatch(watch.id) ">X</button>
+            </div>
+            <div class="card-body">
+                <input #watchName type=" text " class="card-title input input-blue" TitleCaseInput (keyup.enter)="blurOnEnter($event)" (blur)="updateStopWatchName(watch.id, watchName.value)" placeholder=" {{watch.stopWatchName}} ">
+                <p class="font-massive ">{{watch.stopWatchValue | padTimer}}</p>
+                <button class="btn btn-largest btn-primary btn-blue" (click)="toggleStopWatch(watch.id) ">{{watch.toggleLabel}}</button>
+                <button class="btn btn-largest btn-secondary btn-blue" [class.btn-disabled]="watch.isActive " [disabled]="watch.isActive " (click)="resetStopWatch(watch.id) ">Reset</button>
+            </div>
+        </card>
+    </div>
+</container>

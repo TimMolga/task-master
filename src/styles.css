@@ -1,15 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
+html {
+    height: 100%;
+}
+
 body {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     --task-timer-primary-color: #6993d5;
-    --task-timer-secondary-color: black;
-    --task-timer-tertiary-color: white;
-    --task-timer-disabled-color: grey;
-    background-color: var(--task-timer-primary-color);
-    /* background-color: #f47827; */
+    --task-planner-primary-color: #f47827;
+    --secondary-color: black;
+    --tertiary-color: white;
+    --disabled-color: grey;
+    margin: 0;
+    height: 100%;
 }
+
+
+/* containers*/
 
 .container {
     column-gap: 5em;
@@ -17,11 +25,12 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    min-height: 100%;
+    padding-bottom: 5em;
 }
 
-.container-form {
+.container-heading {
     margin-top: 2em;
     width: 100%;
     display: flex;
@@ -30,7 +39,7 @@ body {
     flex-direction: column;
 }
 
-.container-form-item {
+.container-heading-item {
     border-radius: 30px;
     font-size: 2em;
     margin-top: 1em;
@@ -38,61 +47,33 @@ body {
     width: 50%;
 }
 
-.container-btn {
-    cursor: pointer;
+.container-body {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 6em;
+    justify-content: center;
+    display: flex;
+    row-gap: 6em;
+    column-gap: 6em;
 }
 
-.container-input {
-    height: 1.5em;
-    text-align: center;
-}
+
+/* cards*/
 
 .card {
     align-items: center;
     display: flex;
-    flex-direction: column;
     row-gap: 20px;
+    flex-direction: column;
     border-radius: 2em;
     padding: 1em;
-    margin-top: 6em;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--tertiary-color);
 }
 
-.card-btn {
-    border-radius: 30px;
-    font-size: 2em;
-    width: 8em;
-    cursor: pointer;
-}
-
-.card-btn-remove-container {
-    width: 100%;
+.card-heading {
+    width: 90%;
     text-align: end;
-}
-
-.card-btn-remove {
-    border: none;
-    font-size: 1em;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.card-primary-btn {
-    cursor: pointer;
-}
-
-.card-secondary-btn {
-    cursor: pointer;
-}
-
-.card-btn-disabled,
-.card-btn-disabled:hover {
-    cursor: default;
-}
-
-.card-input {
-    cursor: pointer;
-    text-align: center;
-    border-radius: 30px;
 }
 
 .card-title {
@@ -100,9 +81,132 @@ body {
 }
 
 .card-body {
+    align-items: center;
+    display: flex;
+    row-gap: 20px;
+    flex-direction: column;
+    border-radius: 2em;
+    padding: 1em;
     font-size: 1em;
 }
 
-.card-input::placeholder {
+.font-massive {
+    font-size: 5em;
+    font-weight: bold;
+}
+
+
+/* buttons*/
+
+.btn {
+    cursor: pointer;
+    border-radius: 30px;
+    border: 2px solid var(--tertiary-color);
+}
+
+.btn-large {
+    font-size: 1em;
+    width: 100%;
+}
+
+.btn-largest {
+    font-size: 2em;
+    width: 100%;
+}
+
+.btn-borderless,
+.btn-borderless:hover {
+    font-weight: bold;
+    width: 0%;
+    border: 0;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    color: var(--tertiary-color);
+}
+
+.btn-disabled,
+.btn-disabled:hover {
+    cursor: default;
+    border-color: var(--tertiary-color) !important;
+    color: var(--tertiary-color) !important;
+    background-color: var(--disabled-color) !important;
+}
+
+
+/* inputs*/
+
+.input {
+    text-align: center;
+    border-radius: 30px;
+    cursor: pointer;
+    color: var(--tertiary-color);
+}
+
+.input-large {
+    height: 1.5em;
+}
+
+.input::placeholder {
     opacity: 1;
+    color: var(--tertiary-color);
+}
+
+.input:focus {
+    background-color: var(--tertiary-color);
+    color: var(--secondary-color);
+    outline-width: 0;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+.input:hover {
+    border: 1px solid var(--tertiary-color);
+}
+
+
+/* style themes*/
+
+.btn-blue,
+.container-blue {
+    background-color: var(--task-timer-primary-color);
+}
+
+.btn-orange,
+.container-orange {
+    background-color: var(--task-planner-primary-color);
+}
+
+.btn-blue:hover {
+    border-color: var(--task-timer-primary-color);
+    color: var(--task-timer-primary-color);
+}
+
+.btn-orange:hover {
+    border-color: var(--task-planner-primary-color);
+    color: var(--task-planner-primary-color);
+}
+
+.btn-primary,
+.btn-secondary {
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    color: var(--tertiary-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    background-color: var(--tertiary-color);
+}
+
+.input-blue {
+    background-color: var(--task-timer-primary-color);
+    border-color: var(--task-timer-primary-color);
+    border: 0px solid var(--task-timer-primary-color);
+}
+
+.input-orange {
+    background-color: var(--task-planner-primary-color);
+    border-color: var(--task-planner-primary-color);
+    border: 0px solid var(--task-planner-primary-color);
 }

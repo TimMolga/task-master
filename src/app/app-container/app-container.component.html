@@ -1,0 +1,4 @@
+<div class="container" [class.container-blue]="theme === 'blue'" [class.container-orange]="theme === 'orange'">
+    <ng-content select=" .container-heading "></ng-content>
+    <ng-content select=".container-body "></ng-content>
+</div>
