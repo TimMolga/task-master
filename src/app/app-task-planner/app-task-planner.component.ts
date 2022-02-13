@@ -35,6 +35,7 @@ export class AppTaskPlannerComponent {
   createSubTask(id:string):void{
     let task = this.getTask(id);
     task?.subTasks.push(new SubTask());
+    task?.toggleCanComplete(); 
   }
 
   /** Completes a Task object by ID
@@ -72,6 +73,7 @@ export class AppTaskPlannerComponent {
     let task = this.getTask(id);
     let newSubTaskList = task?.subTasks.filter(subTask => subTask.id !== subId);
     if (task && newSubTaskList) task.subTasks = [...newSubTaskList];
+    task?.toggleCanComplete(); 
   }
 
   /** Edits a SubTask object by ID
