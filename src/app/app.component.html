@@ -1,1 +1,25 @@
-<task-timer></task-timer>
+<div [ngSwitch]="currentPage" class="page">
+    <div class="nav" [class.nav-active]="currentPage === 'master'">
+        <div *ngIf="currentPage === 'master'; then masterActive else masterInactive"></div>
+        <ng-template #masterActive>
+            <div class="nav-title">Task Master</div>
+        </ng-template>
+        <ng-template #masterInactive>
+            <div class="nav-icon" (click)="togglePage('master')">
+                <icon [iconType]="'back-massive'"></icon>
+            </div>
+        </ng-template>
+    </div>
+    <div *ngSwitchCase="'master'" class="master-page"> 
+        <div class="landing-container">
+            <div class="landing-container-half landing-container-orange" (click)="togglePage('planner')">
+                <div class="font-massive-bold">Task Planner</div>
+            </div>
+            <div class="landing-container-half landing-container-blue" (click)="togglePage('timer')">
+                <div class="font-massive-bold">Task Timer</div>
+            </div>
+        </div>
+    </div>
+    <task-planner *ngSwitchCase="'planner'"></task-planner>
+    <task-timer *ngSwitchCase="'timer'"></task-timer>
+</div>

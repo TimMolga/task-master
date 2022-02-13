@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'task-master';
+  currentPage:string = 'master';
 
+  togglePage(page:string):void{
+    this.currentPage = page;
+  }
 }

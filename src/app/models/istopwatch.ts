@@ -1,7 +1,6 @@
 export interface IStopWatch{
-    id?: string,
-    stopWatchName?: string,
-    toggleLabel: string,
+    id: string,
+    stopWatchName: string,
     isActive: boolean,
     stopWatchValue: number,
     toggleTimer():void,

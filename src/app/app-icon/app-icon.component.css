@@ -1,0 +1,45 @@
+svg {
+    filter: drop-shadow(2px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+.icon-complete {
+    fill: #58ae45;
+}
+
+.icon-incomplete {
+    fill: grey;
+}
+
+.icon-delete{
+    fill: white
+}
+
+.icon-back{
+    fill: white
+}
+
+.icon-txt-flex-left,
+.icon-txt-flex-right{
+    display: flex;
+    align-items: center;
+}
+
+.icon-txt-flex-left{
+    flex-direction: row-reverse;
+}
+
+.icon-txt-flex-right{
+    flex-direction: row;
+}
+
+path {
+    stroke: black;
+    stroke-width: 0.2px;
+    stroke-linejoin: round;
+}
+
+path:hover {
+    stroke: white;
+    stroke-width: 0.2px;
+    stroke-linejoin: round;
+}

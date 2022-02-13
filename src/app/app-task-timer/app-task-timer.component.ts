@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IStopWatch } from '../models/istopwatch';
 import { StopWatch } from '../models/stopwatch';
-import { v4 as uuidv4 } from 'uuid';
+import { DataService } from './../services/data.service';
 
 @Component({
   selector: 'task-timer',
@@ -9,53 +8,64 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./app-task-timer.component.css']
 })
 export class AppTaskTimerComponent {
-  stopWatchList:IStopWatch[] = [new StopWatch(uuidv4())];
+  stopWatchList:StopWatch[] = [];
 
-  /** Creates a StopWatch object and inserts it into a list*/
-  createStopWatch():void{
-    this.stopWatchList.push(new StopWatch(uuidv4()));
+  constructor(private service: DataService){}
+
+  ngOnInit(){
+    this.stopWatchList = [...this.service.getStopWatches()]
   }
 
-  /** Triggers the blur event 
-   * @param {any}  event - A enter keydown event.
+  /** Triggers the blur event from an enter keydown event
+    * @param {any}  event - A enter keydown event.
   */
   blurOnEnter(event:any):void{
     event.target.blur();
   }
 
-  /** Updates a StopWatch name 
-   * @param {string | undefined}  watchId A StopWatch ID
-   * @param {string | undefined}  watchName A name to update the StopWatch with
-  */
-  updateStopWatchName(watchId:string | undefined, watchName:string | undefined):void{
-    if (watchName){
-      let stopWatch = this.stopWatchList.find(stopWatch => stopWatch.id === watchId);
-      if (stopWatch) stopWatch.stopWatchName = watchName;
-    }
+  /** Creates a StopWatch object and inserts it into a list */
+  createStopWatch():void{
+    this.stopWatchList.push(new StopWatch());
   }
 
   /** Deletes a StopWatch object from a list 
-   * @param {string | undefined}  watchId A StopWatch ID
+    * @param {string}  id A StopWatch ID
   */
-  deleteStopWatch(watchId:string | undefined):void{
-    let newWatchList = this.stopWatchList.filter(stopWatch => stopWatch.id !== watchId);
+  deleteStopWatch(id:string):void{
+    let newWatchList = this.stopWatchList.filter(stopWatch => stopWatch.id !== id);
     this.stopWatchList = [...newWatchList];
   }
-  
+
+  /** Gets a StopWatch object in a list by ID
+    * @param {string}  id A StopWatch ID
+    * @returns {StopWatch} Boolean whether value starts with alphanumeric characters
+  */
+   private getStopWatch(id:string):StopWatch | undefined {
+    return this.stopWatchList.find(stopWatch => stopWatch.id === id);
+  }
+
+  /** Resets a StopWatch object watch(timer) value 
+    * @param {string}  id A StopWatch ID
+  */
+  resetStopWatch(id:string):void{
+    let stopWatch = this.getStopWatch(id);
+    stopWatch?.resetTimer();
+  }
+
   /** Toggles a StopWatch object to start or stop the timer 
-   * @param {string | undefined}  watchId A StopWatch ID
+    * @param {string}  id A StopWatch ID
   */
-  toggleStopWatch(watchId:string | undefined):void{
-    let stopWatch = this.stopWatchList.find(stopWatch => stopWatch.id === watchId);
-    if (stopWatch) stopWatch.toggleTimer();
+  toggleStopWatch(id:string):void{
+    let stopWatch = this.getStopWatch(id);
+    stopWatch?.toggleTimer();
   }
 
-  /** Resets a StopWatch object watch (timer) value 
-   * @param {string | undefined}  watchId A StopWatch ID
+  /** Updates a StopWatch name 
+    * @param {string}  id A StopWatch ID
+    * @param {string}  name A new StopWatch name
   */
-  resetStopWatch(watchId:string | undefined):void{
-    let stopWatch = this.stopWatchList.find(stopWatch => stopWatch.id === watchId);
-    if (stopWatch) stopWatch.resetTimer();
-  }
-
+  updateStopWatchName(id:string, name:string):void{
+    let stopWatch = this.getStopWatch(id);
+    if (stopWatch && name) stopWatch.stopWatchName = name;
+  } 
 }

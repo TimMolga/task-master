@@ -1,0 +1,85 @@
+<container [theme]="'orange'">
+    <div class="container-heading">
+        <div class="container-heading-item">
+            <button class="btn btn-primary btn-large btn-orange" (click)=" createTask() ">+Task</button>
+        </div>
+    </div>
+    <div class="container-body">
+        <card *ngFor="let task of taskList ">
+            <div class="card-heading">
+                <div (click)="deleteTask(task.id)">
+                    <icon [iconType]=" 'delete' "></icon>
+                </div>
+            </div>
+                <div class="card-body">
+                    <div *ngIf="!task.isComplete; then taskIncomplete else taskComplete"></div>
+                    <ng-template #taskIncomplete>
+                    <input 
+                        #taskName
+                        type=" text " 
+                        class="card-title input input-orange" 
+                        titleCaseInput 
+                        (keyup.enter)="blurOnEnter($event)" 
+                        (blur)="updateTaskName(task.id, taskName.value)" 
+                        placeholder=" {{task.taskName ? task.taskName : '[Enter task here]'}}">
+                    <button class="btn btn-primary font-large btn-orange" (click)="createSubTask(task.id)">+Subtask</button>
+                    <div *ngIf="task.subTasks.length > 0; then isSubtasks else noSubtasks"></div>
+                        <ng-template #isSubtasks>
+                            <div *ngFor="let subtask of task.subTasks" class="card-body-items">
+                                <div *ngIf="subtask.isEditing; then editing else notEditing"></div>
+                                <ng-template #editing>
+                                    <div class="card-body-item">
+                                        <span contenteditable="true"
+                                            class=" txt-area font-wide" 
+                                            #description
+                                            Autofocuser
+                                            (keyup.enter)="blurOnEnter($event)" 
+                                            (blur)="updateSubTaskDescription(task.id, subtask.id, description.innerText)">
+                                            {{subtask.subTaskDescription}}
+                                        </span>
+                                    </div>
+                                </ng-template>
+                                <ng-template #notEditing>
+                                    <div class="card-body-item card-body-item-inactive" [class.card-extra-padding]="subtask.subTaskDescription === ''">
+                                        <div (click)="completeSubTask(task.id, subtask.id)" style="width:56px">
+                                            <icon *ngIf="subtask.subTaskDescription !== ''" 
+                                                [iconType]="'complete'" 
+                                                [iconActive]="subtask.isComplete">
+                                            </icon>
+                                        </div>
+                                        <div class="font-center">
+                                            <div class="font-center font-regular" [class.txt-center]="subtask.subTaskDescription === ''">
+                                                {{subtask.subTaskDescription ? (subtask.subTaskDescription | hyphenator) : '[Enter subtask here]'}}
+                                            </div>
+                                        </div>
+                                        <div class="icon-container"  style="width:56px">
+                                            <div (click)="editSubTask(task.id, subtask.id)">
+                                                <icon *ngIf="!subtask.isComplete" [iconType]=" 'edit' "></icon>
+                                            </div>
+                                            <div (click)="deleteSubTask(task.id, subtask.id)">
+                                                <icon [iconType]=" 'delete' "></icon>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </div>
+                        </ng-template>
+                        <ng-template #noSubtasks>
+                        <p class="txt-center font-regular">No subtasks</p>
+                        </ng-template>
+                        <div *ngIf="task.canComplete" (click)="completeTask(task.id)">
+                            <icon [iconType]="'complete'" [iconActive]="task.isComplete" [iconTextDirection]="'right'">
+                                <div class="icon-txt">Complete Task</div>
+                            </icon>
+                        </div>
+                    </ng-template>
+                    <ng-template #taskComplete>
+                        <div class="card-body">
+                            <div class="font-large">{{task.taskName}}</div>
+                            <div class="font-larger">Task Complete</div>
+                        </div>
+                    </ng-template>
+                </div>
+        </card>
+    </div>
+</container>

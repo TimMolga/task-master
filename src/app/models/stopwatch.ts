@@ -1,22 +1,18 @@
-
 import { IStopWatch } from "./istopwatch";
+import { v4 as uuidv4 } from 'uuid';
 
 /** @implements {IStopWatch} */
 export class StopWatch implements IStopWatch {
-    private _interval:any = null;
-    private _toggleLabel:string = 'Start';
+    private _id:string = uuidv4();
+    private _stopWatchName:string = '[Enter timer name]';
     private _isActive:boolean = false;
     private _stopWatchValue:number = 0;
-    private _stopWatchName:string = '[Enter Task Timer Name]';
-
-    /** @param {string} _id Generated StopWatch ID */
-    constructor(private _id:string){}
+    private _interval:any = null;
     
     /** Toggles the StopWatch timer between active and inactive */
     toggleTimer(): void {
         this._isActive = !this._isActive;
         this.activateTimer(this._isActive);
-        this._toggleLabel = this._isActive ? 'Stop' : 'Start';
     }
     
     /** Activates and runs the StopWatch timer 
@@ -42,20 +38,12 @@ export class StopWatch implements IStopWatch {
         return this._id;
     }
 
-    set id(value){
-        this._id = value;
-    }
-
     get stopWatchName(){
         return this._stopWatchName;
     }
 
     set stopWatchName(value){
         this._stopWatchName = value;
-    }
-
-    get toggleLabel(){
-        return this._toggleLabel;
     }
 
     get isActive(){
