@@ -21,7 +21,7 @@
                         titleCaseInput 
                         (keyup.enter)="blurOnEnter($event)" 
                         (blur)="updateTaskName(task.id, taskName.value)" 
-                        placeholder=" {{task.taskName ? task.taskName : '[Enter task here]'}}">
+                        placeholder=" {{task.taskName ? task.taskName : '[Enter task name here]'}}">
                     <button class="btn btn-primary font-large btn-orange" (click)="createSubTask(task.id)">+Subtask</button>
                     <div *ngIf="task.subTasks.length > 0; then isSubtasks else noSubtasks"></div>
                         <ng-template #isSubtasks>
@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="font-center">
                                             <div class="font-center font-regular" [class.txt-center]="subtask.subTaskDescription === ''">
-                                                {{subtask.subTaskDescription ? (subtask.subTaskDescription | hyphenator) : '[Enter subtask here]'}}
+                                                {{subtask.subTaskDescription ? (subtask.subTaskDescription | hyphenator) : '[Enter subtask description here]'}}
                                             </div>
                                         </div>
                                         <div class="icon-container"  style="width:56px">

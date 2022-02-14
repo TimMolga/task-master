@@ -54,6 +54,8 @@
         row-gap: 6em;
         column-gap: 6em;
     }
+
+    
     /* cards*/
     
     .card {
@@ -101,6 +103,7 @@
         flex-direction: row;
         width: 100%;
         padding: 1em;
+        justify-content: center;
     }
     
     .card-body-item-inactive {
@@ -178,6 +181,11 @@
         border-radius: 30px;
         border: 2px solid var(--tertiary-color);
         font-family: 'Raleway', sans-serif;
+    }
+
+    .btn:hover{
+        transform: translateY(-7px);
+        transition: all 0.3s ease 0s;
     }
     
     .btn-large {

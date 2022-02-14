@@ -15,7 +15,7 @@ export class Task implements ITask {
 
     toggleCanComplete(): void {
         let subTaskCompleteCount = this._subTasks.reduce((counter, subTask) => !subTask.isComplete  ? counter += 1 : counter, 0);
-        this._canComplete = subTaskCompleteCount === 0;
+        this._canComplete = subTaskCompleteCount === 0 && this._subTasks.length > 0;
     }
 
     get id(){

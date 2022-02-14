@@ -6,7 +6,7 @@ import { DataService } from './../services/data.service';
 @Component({
   selector: 'task-planner',
   templateUrl: './app-task-planner.component.html',
-  styleUrls: ['./app-task-planner.component.css']
+  styleUrls: ['./app-task-planner.component.css'],
 })
 export class AppTaskPlannerComponent {
   taskList:Task[] = [];

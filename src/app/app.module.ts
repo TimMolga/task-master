@@ -11,6 +11,7 @@ import { PadTimerPipe } from './common/pipes/pad-timer.pipe';
 import { TitleCaseInputDirective } from './common/directives/title-case-input.directive';
 import { HyphenatorPipe } from './common/pipes/hyphenator.pipe';
 import { AutofocuserDirective } from './common/directives/autofocuser.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,10 @@ import { AutofocuserDirective } from './common/directives/autofocuser.directive'
     AutofocuserDirective,
   ],
   imports: [
-    BrowserModule,
-    FormsModule
+  
+  BrowserModule,
+  BrowserAnimationsModule,
+  FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
